@@ -1,3 +1,5 @@
 test.nmap
 rmi_scans.list
 target/classes/
+target/maven-status/
+resources/target/maven-status/
