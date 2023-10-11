@@ -7,7 +7,7 @@ public class Help{
     public static Options getOptions(){
 		Options opts = new Options();
 
-		Option user = new Option("u", "user", true, "Username if needed");
+		Option user = new Option("u", "username", true, "Username if needed");
         user.setRequired(false);
         user.setArgName("username");
         opts.addOption(user);
@@ -126,6 +126,7 @@ public class Help{
 
         msg +=  "\n\t-f,--follow-redirect\tWhether to follow server redirection or not (default: Nope)";
         msg +=  "\n\t-v,--verbose\tIncrease verbosity";
+        msg +=  "\n\t-bn,--bound-name\tEndpoint to connect (default: jmxrmi)";
         msg +=  "\n\t-mn,--mlet-name <mlet-name>\tSet the mletName to target (default: DefaultDomain:type=MLet / but for jonas: jonas:type=MLet)";
 
         return msg;

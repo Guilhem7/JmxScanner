@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.RemoteException;
+import java.lang.SecurityException;
 
 public class Checker extends MBeanConnect {
 
@@ -24,6 +25,8 @@ public class Checker extends MBeanConnect {
 			} else {
 				return TargetResult.NOT_VULNERABLE;
 			}
+		} catch(SecurityException ex){
+			return TargetResult.REQUIRE_CREDENTIALS;
 		} catch(Exception ex) {
 			return TargetResult.NOT_VULNERABLE;
 		}
@@ -49,6 +52,8 @@ public class Checker extends MBeanConnect {
 		String targetState;
 		if(res == TargetResult.VULNERABLE){
 			targetState = Printer.color(res.toString(), Printer.LOG);
+		} else if(res == TargetResult.REQUIRE_CREDENTIALS){
+			targetState = String.format("%s because: %s", Printer.color(TargetResult.NOT_VULNERABLE.toString(), Printer.ERROR), Printer.color(res.toString(), Printer.ORANGE));
 		} else {
 			targetState = Printer.color(res.toString(), Printer.ERROR);
 		}

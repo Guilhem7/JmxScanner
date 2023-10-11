@@ -9,6 +9,8 @@ import javax.management.MalformedObjectNameException;
 import javax.management.ObjectName;
 import javax.management.ObjectInstance;
 
+// https://docs.jboss.org/jbossas/javadoc/4.0.2/javax/management/loading/MLet.html
+
 public class MBeanOpManager{
 	private ObjectName mbeanName = null;
 	private ObjectName mLet = null;
