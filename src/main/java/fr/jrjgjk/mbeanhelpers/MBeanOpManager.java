@@ -24,8 +24,13 @@ public class MBeanOpManager{
 	public void installMBeanMlet(MBeanServerConnection mbeanServerConn){
 		try{
 			if(!mbeanServerConn.isRegistered(this.mLet)){
-				Printer.info("Registering new MLet '" + Config.mBeanLetName + "'");
-				ObjectInstance registeredObject = mbeanServerConn.createMBean(Config.mBeanLetName, null);
+				Printer.info("Registering new MLet '" + Config.mBeanLetName + "' as " + this.mLet.toString());
+				// I don't know why but sometimes it only works with this:
+				// ObjectInstance registeredObject = mbeanServerConn.createMBean(Config.mBeanLetName, null);
+				// TODO implements both case
+				//
+				// For the moment keep this implementation, but will probably fail on JonAs if I remember correctly
+				ObjectInstance registeredObject = mbeanServerConn.createMBean(Config.mBeanLetName, this.mLet);
 				Printer.info("Mlet objectName: " + Printer.color(registeredObject.getObjectName().toString(), Printer.DEBUG));
 				Printer.vinfo("Overriding default MletName with this one...");
 				this.mLet = registeredObject.getObjectName();
